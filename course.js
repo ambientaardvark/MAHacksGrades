@@ -3,12 +3,13 @@ const User = require("./user.js");
 
 class Course{
 
-    constructor(name, ownerList, id){
+    constructor(name, ownerList, id, school){
         this.name = name;
-        this.ownerList = ownerList;
+        this.ownerList = ownerList; //LIST OF IDS
         this.assignmentList = [];
-        this.studentList = []
+        this.studentList = [] //LIST OF IDS
         this.id = id;
+        this.school = school;
     }
 
     removeAssignment(assignment){
@@ -49,6 +50,32 @@ class Course{
         if(studentIndex>-1){
             this.studentList.splice(studentIndex, 1);
         }
+    }
+    
+    getData(user) //getting data with permissions from the given user
+    {
+        var data = {
+            name: this.name,
+            ownerList: [],
+            assignmentList: [],
+            studentList: []
+        };
+        if(user.permissionLevel > 0 || user.hasCourse(this.id))
+        {
+            for(var i = 0; i < this.studentList.length; i++)
+            {
+                data.studentList.push(this.school.getUser(this.studentList[i]));
+            }
+            for(var i = 0; i < this.assignmentList.length; i++)
+            {
+                data.assignmentList.push(this.assignmentList[i].getData(user.id));
+            }
+        }
+        for(var i = 0; i < this.ownerList.length; i++)
+        {
+            data.ownerList.push(this.school.getUser(ownerList[i]));
+        }
+        return data;
     }
 
 }

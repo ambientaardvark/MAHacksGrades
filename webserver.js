@@ -1,8 +1,17 @@
 const Express = require("express");
-
-var port = 8080;
-var httpServer = Express();
-httpServer.use(Express.static("public"));
-httpServer.listen(port, function() {
-    console.log("listening on port " + port);
-});
+class WebServer
+{
+    constructor()
+    {
+        this.httpServer = Express();
+    }
+    start(port)
+    {
+        this.port = port;
+        this.httpServer.use(Express.static("public"));
+        this.httpServer.listen(port, function() {
+            console.log("listening on port " + port);
+        });
+    }
+}
+module.exports = WebServer;

@@ -1,9 +1,14 @@
 class School
 {
-    constructor()
+    constructor(name, location, principal, principalEmail, supportEmail)
     {
-        userList = [];
-        courseList = [];
+        this.name = name;
+        this.location = location;
+        this.principal = principal;
+        this.principalEmail = principalEmail;
+        this.supportEmail = supportEmail;
+        this.userList = [];
+        this.courseList = [];
     }
 
     removeUser(user){
@@ -36,5 +41,53 @@ class School
         }
     }
 
+    getUser(id)
+    {
+        for(var i = 0; i < this.userList.length; i++)
+        {
+            var user = this.userList[i];
+            if(user.id == id)
+            {
+                return user;
+            }
+        }
+        return null;
+    }
+    getCourse(id)
+    {
+        for(var i = 0; i < this.courseList.length; i++)
+        {
+            var course = this.courseList[i];
+            if(course.id == id)
+            {
+                return course;
+            }
+        }
+        return null;
+    }
+    getData(user)
+    {
+        var data = {
+            name: this.name,
+            location: this.location,
+            principal: this.principal,
+            principalEmail: this.principalEmail,
+            supportEmail: this.supportEmail,
+            courseList = [],
+            userList = []
+        };
+        for(var i = 0; i < this.courseList.length; i++)
+        {
+            data.courseList.push(this.courseList[i].getData(user));
+        }
+        if(user.permissionLevel > 0)
+        {
+            for(var i = 0; i < this.userList.length; i++)
+            {
+                data.userList.push(this.userList[i].getData());
+            }
+        }
+        return data;
+    }
 }
 module.exports = School;

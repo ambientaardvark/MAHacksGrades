@@ -1,8 +1,9 @@
+const WSServer = require("./wsserver.js");
+const WebServer = require("./webserver.js");
+const School = require("./school.js");
 
-var userList = [];
-var courseList = [];
-
-function createUser(name, password)
-{
-//todo
-}
+var school = new School();
+var webServer = new WebServer();
+var wsServer = new WSServer();
+webServer.start(8080);
+wsServer.start(5524);

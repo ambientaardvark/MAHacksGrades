@@ -1,13 +1,15 @@
 class User
 {
-    constructor(firstName, lastName, userName, password, id)
+    constructor(firstName, lastName, userName, password, id, permissionLevel, school)
     {
         this.firstName = firstName;
         this.lastName = lastName;
         this.userName = userName;
         this.password = password;
         this.id = id;
-        courseList = [];
+        this.courseList = []; //LIST OF IDS
+        this.permissionLevel = permissionLevel;
+        this.school = school;
     }
 
     dropCourse(id){
@@ -23,7 +25,33 @@ class User
         }
     }
     
-
+    hasCourse(id)
+    {
+        for(var i = 0; i < this.courseList.length; i++)
+        {
+            if(this.courseList[i] == id)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+    getData()
+    {
+        var data = {
+            firstName: this.firstName,
+            lastName: this.lastName,
+            userName: this.userName,
+            id: this.id,
+            courseList: [],
+            permissionLevel: this.permissionLevel
+        };
+        for(var i = 0; i < this.courseList.length; i++)
+        {
+            data.courseList.push(this.school.getCourse(this.courseList[i]).getData());
+        }
+        return data;
+    }
 
 }
 module.exports = User;
