@@ -1,6 +1,3 @@
-const Assignment = require("./assignment.js");
-const User = require("./user.js");
-
 class Course{
 
     constructor(name, ownerList, id){
@@ -52,5 +49,4 @@ class Course{
     }
 
 }
-
 module.exports = Course;
