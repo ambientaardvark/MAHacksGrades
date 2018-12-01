@@ -3,11 +3,12 @@ const User = require("./user.js");
 
 class Course{
 
-    constructor(name, ownerList){
+    constructor(name, ownerList, id){
         this.name = name;
         this.ownerList = ownerList;
         this.assignmentList = [];
         this.studentList = []
+        this.id = id;
     }
     
     addAssignment(assignment){
@@ -24,8 +25,8 @@ class Course{
 
     removeAssignment(assignment){
         let assignmentIndex = -1;
-        for (let index = 0; index < array.length; index++) {
-            const element = array[index];
+        for (let index = 0; index < this.assignmentList.length; index++) {
+            const element = this.assignmentList[index];
             if(element == assignment){
                 assignmentIndex = index;
             }
@@ -38,24 +39,28 @@ class Course{
             return;
         }
         let ownerIndex = -1;
-        for (let index = 0; index < array.length; index++) {
-            const element = array[index];
+        for (let index = 0; index < this.ownerList.length; index++) {
+            const element = this.ownerList[index];
             if(element == owner){
                 ownerIndex = index;
             }
         }
-        this.ownerList.splice(ownerIndex, 1);
+        if(ownerIndex>-1){
+            this.ownerList.splice(ownerIndex, 1);
+        }
     }
 
     removeStudent(student){
         let studentIndex = -1;
-        for (let index = 0; index < array.length; index++) {
-            const element = array[index];
+        for (let index = 0; index < this.studentList.length; index++) {
+            const element = this.studentList[index];
             if(element == student){
                 studentIndex = index;
             }
         }
-        this.studentList.splice(studentIndex, 1);
+        if(studentIndex>-1){
+            this.studentList.splice(studentIndex, 1);
+        }
     }
 
 }
