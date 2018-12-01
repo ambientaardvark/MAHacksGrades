@@ -15,5 +15,9 @@
   "bugs": {
     "url": "https://github.com/ambientaardvark/MAHacksGrades/issues"
   },
-  "homepage": "https://github.com/ambientaardvark/MAHacksGrades#readme"
+  "homepage": "https://github.com/ambientaardvark/MAHacksGrades#readme",
+  "dependencies": {
+    "express": "^4.16.4",
+    "ws": "^6.1.2"
+  }
 }
