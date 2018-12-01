@@ -9,18 +9,6 @@ class Course{
         this.assignmentList = [];
         this.studentList = []
     }
-    
-    addAssignment(assignment){
-        this.assignmentList.push(assignment);
-    }
-
-    addOwner(owner){
-        this.ownerList.push(owner);
-    }
-
-    addStudent(student){
-        this.studentList.push(student);
-    }
 
     removeAssignment(assignment){
         let assignmentIndex = -1;
