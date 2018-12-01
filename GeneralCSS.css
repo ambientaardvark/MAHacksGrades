@@ -1,0 +1,24 @@
+@charset "utf-8";
+/* CSS Document */
+
+.smallLogo{
+	width:45px;
+	display: inline-block;
+	margin-right: 20px;
+	margin-left: 10px;
+	margin-bottom: 10px;
+}
+.cardheader {
+	display: inline-block;
+	vertical-align: center;
+}
+
+#emailInput {
+	background-image: url(smallLogo.gif);
+	background-repeat: no-repeat;
+	text-indent: 35px
+}
+#emailInput:focus{
+	background-image: none;
+	text-indent: 0;
+}
