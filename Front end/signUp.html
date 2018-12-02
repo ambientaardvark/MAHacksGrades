@@ -9,7 +9,33 @@
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 	  <link href="GeneralCSS.css" rel="stylesheet">
-
+	  <script>alert("help!");</script>
+	  <script src="./client.js"></script>
+	<script>
+            var client;
+			
+            window.addEventListener("load",function(){
+				alert("working 0");
+                client = new Client("ws://127.0.0.1:5524");
+				
+                 $("#createAccountButton").addEventListener("click", function() {
+					alert("working 1");
+                    var username = document.getElementById("createuser_username").value;
+                    var password = document.getElementById("passwordInput").value;
+                    var firstname = document.getElementById("firstNameInput").value;
+                    var lastname = document.getElementById("lastNameInput").value;
+					var confirm = document.getElementById("confirmInput").value;
+					if(password==confirm){
+						alert("yay");
+                    	client.sendCreateUser(username, password, firstname, lastname);
+					} else{
+						$("#confirmField").addClass("hasError");
+						$("#passwordMismatchError").append("Passwords do not match");
+						alert("working");
+					}
+                })
+            });
+        </script>
   </head>
   <body>
     
@@ -36,10 +62,11 @@
 								<div class="form-group">
 									<input type="password" id="passwordInput" class="form-control" placeholder="password">
 								</div>
-								<div class="form-group">
+								<div class="form-group" id="confirmField">
 									<input type="password" id="confirmInput" class="form-control" placeholder="confirm password">
+									<small id="passwordMismatchError" class="form-text"></small>
 								</div>
-								<button type="submit" id="createAccountButton" class="btn btn-primary">Create Account</button>
+								<button type="button" id="createAccountButton" class="btn btn-primary">Create Account</button>
 								
 							</form>
 						</div>
@@ -57,19 +84,7 @@
     <!-- Include all compiled plugins (below), or include individual files as needed --> 
     <script src="../../js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
-	<script src="./client.js"></script>
-	  <script>
-            var client;
-            window.addEventListener("load",function(){
-                client = new Client();
-                 document.getElementById("createuser_button").addEventListener("click", function() {
-                    var username = document.getElementById("createuser_username").value;
-                    var password = document.getElementById("passwordInput").value;
-                    var firstname = document.getElementById("firstNameInput").value;
-                    var lastname = document.getElementById("lastNameInput").value;
-                    client.sendCreate(username, password, firstname, lastname, perms)
-                })
-            });
-        </script>
+	
+	  
   </body>
 </html>
