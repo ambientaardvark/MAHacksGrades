@@ -224,6 +224,12 @@ class Client{
             }));
         }
     }
+    sendRequestGrades(){
+        this.socket.send(JSON.stringify({
+            token: this.token,
+            type: "requestGrades"
+        }))
+    }
     sendCreateCourse(name, ownerList) //list of user ids
     {
         if(this.ready())
