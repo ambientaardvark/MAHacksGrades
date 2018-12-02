@@ -93,11 +93,14 @@ class WSServer
                         break;
 
                     case "requestSchoolInfo":
+                    {
                         let tempSchoolInfo = wss.school.getData(tempUser);
                         ws.send(JSON(stringify({type:"schoolInfo",schoolInfo: tempSchoolInfo})));
+                    }
                         break;
 
                     case "requestStudentList":
+                    {
                         let tempUserList;
                         if(tempUser.permissionLevel>0){
                             for(let i = 0; i < wss.school.userList.length; i++){
@@ -107,9 +110,11 @@ class WSServer
                             }
                         }
                         ws.send(JSON(stringify({type:"studentList",studentList: tempUserList})));
+                    }
                         break;
 
                     case "requestTeacherList":
+                    {
                         let tempUserList;
                         if(tempUser.permissionLevel>0){
                             for(let i = 0; i < wss.school.userList.length; i++){
@@ -119,9 +124,11 @@ class WSServer
                             }
                         }
                         ws.send(JSON(stringify({type:"teacherList",teacherList: tempUserList})));
+                    }
                         break;
                         
                     case "requestAdministratorList":
+                    {
                         let tempUserList;
                         if(tempUser.permissionLevel>0){
                             for(let i = 0; i < wss.school.userList.length; i++){
@@ -131,10 +138,12 @@ class WSServer
                             }
                         }
                         ws.send(JSON(stringify({type:"administratorList",administratorList: tempUserList})));
+                    }
                         break;
 
                     //data must include user id
                     case "requestUserInfo":
+                    {
                         let tempStudentInfo;
                         if(tempUser.permissionLevel>0){
                             for(let i = 0; i < wss.school.userList.length; i++){
@@ -144,6 +153,7 @@ class WSServer
                             }
                         }
                         ws.send(JSON(stringify({type:"userInfo",userInfo: tempStudentInfo})));
+                    }
                         break;
 
                     case "createUser":
@@ -168,8 +178,10 @@ class WSServer
                         break;
                     
                     case "completeUser":
+                    {
                         tempUser.schoolName = data.school;
                         tempUser.permissionLevel = data.permissionLevel;
+                    }
                         break;
                        
                     default:
