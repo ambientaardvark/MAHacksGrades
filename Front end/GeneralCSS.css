@@ -1,0 +1,44 @@
+@charset "utf-8";
+/* CSS Document */
+
+.smallLogo{
+	width:45px;
+	display: inline-block;
+	margin-right: 20px;
+	margin-left: 10px;
+	margin-bottom: 10px;
+}
+.cardheader {
+	display: inline-block;
+	vertical-align: center;
+}
+
+#emailInput, #firstNameInput, #lastNameInput{
+	background-image: url(profile.png);
+	background-position: 2px 0px;
+}
+
+#passwordInput, #confirmInput{
+	background-image: url(lock.png);
+	background-position: 8px 0px;
+}
+
+#passwordInput, #confirmInput, #emailInput, #firstNameInput, #lastNameInput{
+	background-repeat: no-repeat;
+	text-indent: 35px;
+	background-size: contain;
+}
+#createAccountButton {
+	background-color: red;
+}
+
+.signUpButton {
+	horizantal-align: center;
+	width: 30%;
+	background-color: red;
+	border-radius: 10px;
+}
+
+.logincard {
+	padding-top:20vh;
+}
