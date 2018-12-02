@@ -22,3 +22,10 @@
 	background-image: none;
 	text-indent: 0;
 }
+
+.signUpButton {
+	horizantal-align: center;
+	width: 30%;
+	background-color: red;
+	border-radius: 10px;
+}
