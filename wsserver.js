@@ -83,12 +83,13 @@ class WSServer
 
                     case "requestAssignmentList":
                     {
+                        console.log(data.courseId);
                         let tempUseableList = wss.school.getCourse(data.courseId).assignmentList;
-                        let tempAssigmentList;
+                        let tempAssignmentList = [];
                         for(let i = 0; i < tempUseableList.length; i++){
                             tempAssignmentList.push(tempUseableList[i].getData(tempUser.id));
                         }
-                        ws.send(JSON.stringify({type:"assignmentList", assignmentList: tempAssigmentList}));
+                        ws.send(JSON.stringify({type:"assignmentList", assignmentList: tempAssignmentList}));
                     }
                         break;
 

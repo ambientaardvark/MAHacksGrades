@@ -9,7 +9,7 @@ class AssLoader{
 	
 	
 	getCourseAssignmentHtml(assignmentName, grade, possibleGrade, quarter, lastColor){
-		$(".container-fluid").append("<div class='row course courseRow'></div>");
+		$(".container").append("<div class='row course courseRow'></div>");
 		var course = $(".course");
 		$(".course").append("<div class='col-md-4 appendTarget courseText'></div>");
 		$(".appendTarget").append(assignmentName);
@@ -26,8 +26,8 @@ class AssLoader{
 		var color = lastColor + 1;
 		if(color == 4){color = 1}
 		if(color == 1){
-			$(".course").addClass("course2");
-			$(".offcol").addClass("dark-col-2")
+			$(".course").addClass("course1");
+			$(".offcol").addClass("dark-col-1")
 		}
 		if(color == 2){
 			$(".course").addClass("course2");
@@ -37,6 +37,7 @@ class AssLoader{
 			$(".course").addClass("course3");
 			$(".offcol").addClass("dark-col-3")
 		}
+		$(".offcol").removeClass("offcol");
 		$(".course").removeClass("course");
 	}
 }

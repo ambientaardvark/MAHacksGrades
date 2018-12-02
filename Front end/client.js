@@ -277,6 +277,6 @@ class Client{
     //connect to server
     //request grades, classlist, assignment list, etc
 
-
+    
 
 }

@@ -79,7 +79,8 @@ class Course{
             name: this.name,
             ownerList: [],
             assignmentList: [],
-            studentList: []
+            studentList: [],
+            id: this.id
         };
         if(typeof user === "undefined")
         {
@@ -96,10 +97,19 @@ class Course{
                 data.assignmentList.push(this.assignmentList[i].getData(user.id, user.permissionLevel > 1));
             }
         }
+        try
+        {
+        if(typeof this.ownerList != "undefined"){
         for(var i = 0; i < this.ownerList.length; i++)
         {
             data.ownerList.push(this.school.getUser(ownerList[i]));
         }
+        }
+    }
+    catch(e)
+    {
+        console.log("no");
+    }
         return data;
     }
 

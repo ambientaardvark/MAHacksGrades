@@ -4,6 +4,7 @@ class Client{
         this.socket = new WebSocket(url);
         this.loadCookie();
         var cl = this;
+        this.schoolList = [];
         this.socket.onopen = function(openev) {
             cl.emit("open");
             cl.socket.onmessage = function(ev) {
@@ -177,6 +178,7 @@ class Client{
     }
     sendRequestAssignmentList(courseid)
     {
+        console.log(courseid);
         if(this.ready())
         {
             this.socket.send(JSON.stringify({
@@ -280,6 +282,15 @@ class Client{
     //connect to server
     //request grades, classlist, assignment list, etc
 
+    findCourse(name){
+        
+    }
+
+    
+
+    createSchoolList(school){
+        this.schoolList[0] = school;
+    }
 
 
 }
