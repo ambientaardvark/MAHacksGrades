@@ -189,7 +189,7 @@ class WSServer
                     
                     case "createAssignment":
                     {
-                        let assignment = data.course.createAssignment(data.name, data.maximumGrade);
+                        let assignment = data.course.createAssignment(data.name, data.maximumGrade, data.quarter);
                     }
                         break;
                     

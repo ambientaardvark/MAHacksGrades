@@ -10,8 +10,8 @@ class Course{
         this.school = school;
     }
 
-    createAssignment(name, maximumGrade){
-        let assignment = new Assignment(name, maximumGrade);
+    createAssignment(name, maximumGrade, quarter){
+        let assignment = new Assignment(name, maximumGrade, quarter, this.name);
         this.assignmentList.push(assignment);
         return assignment;
     }

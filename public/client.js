@@ -46,6 +46,9 @@ class Client{
                     case "schoolInfo":
                         cl.emit("schoolInfo", [msgobj.schoolInfo])
                         break;
+                    case "grades":
+                        cl.emit("grades", [msgobj.grades]);
+                        break;
                     
                     default:
                         break;
@@ -242,7 +245,7 @@ class Client{
             }));
         }
     }
-    sendCreateAssignment(name, maximumGrade)
+    sendCreateAssignment(name, maximumGrade, quarter)
     {
         if(this.ready())
         {
@@ -250,7 +253,8 @@ class Client{
                 token: this.token,
                 type: "createAssignment",
                 name: name,
-                maximumGrade: maximumGrade
+                maximumGrade: maximumGrade,
+                quarter: quarter
             }));
         }
     }

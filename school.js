@@ -1,5 +1,6 @@
 const User = require("./user.js");
 const Course = require("./course.js");
+const fs = require("fs");
 class School
 {
     constructor(name, location, principal, principalEmail, supportEmail)
@@ -11,6 +12,26 @@ class School
         this.supportEmail = supportEmail;
         this.userList = [];
         this.courseList = [];
+    }
+    loadSchool(filename)
+    {
+        fs.readFile(filename, function(err, data) {
+            dataobj = JSON.parse(data);
+            this.name = dataobj.name;
+            this.location = dataobj.location;
+            
+        });
+    }
+    saveSchool(filename)
+    {
+        fs.writeFile(filename, JSON.stringify(this.getData()), function(err)
+        {
+            if(err)
+            {
+                return console.log(err);
+            }
+            console.log("saved");
+        });
     }
 
     removeUser(user){

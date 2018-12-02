@@ -1,17 +1,21 @@
 class Assignment
 {
-    constructor(name, maxGrade)
+    constructor(name, maxGrade, quarter, coursename)
     {
         this.name = name;
         this.maxGrade = maxGrade;
         this.userGradePairs = [];
+        this.quarter = quarter;
+        this.courseName = coursename;
     }
     getData(id, doAll)
     {
         var data = {
             name: this.name,
             maxGrade: this.maxGrade,
-            grade: -1
+            grade: -1,
+            quarter: this.quarter,
+            courseName: this.courseName
         };
         if(doAll)
         {
