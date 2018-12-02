@@ -11,13 +11,49 @@
     <link href="GeneralCSS.css" rel="stylesheet" type="text/css">
 	  <script src="../jquery-3.3.1.min.js"></script>
 	  <script src="courseLoader.js"></script>
+	  <script src="../public/client.js"></script>
   </head>
   <body>
 	  <script>
 		  window.addEventListener("load", function(){
-	  		var courseLoader = new CourseLoader();
-		    var lastColor = 2;
-		    courseLoader.getCourseHtml("math", 1, 2, 3, 4, 5, lastColor);
+			  var courseLoader = new CourseLoader();
+			  var client = new Client("ws://127.0.0.1:5524");
+			  var lastColor = 2;
+			  client.addEventListener("connect", function(){
+				  client.sendRequestGrades();
+			  })
+			  client.addEventListener("grades", function(gradePairs){
+				  var points = 0;
+				  var totalPoints = 0;
+				  var courseCount = 0;
+				  var courseList = [];
+				  var gradesByQ = [];
+				  var finalPoints = 0;
+				  var finalTotal = 0;
+				  var color = 1;
+				  for(var i = 0; i < gradePairs.length; i++){
+					  for(var v = 0; v < courseList.length; v++){
+						  if(classList[v]==gradePairs.course[i]){courseCount++;}
+					  }
+				  }
+				  for(var i = 0; i < courseCount; i++){
+					  for(var q = 0; q < 4; q++){
+						  for(var c = 0; c < gradePairs.length; c++){
+							  points += gradePairs[c].grade;
+							  totalPoints += gradePairs[c].maximumGrade;
+						  }
+						  gradesByQ[q] = totalPoints / points;
+						  finalPoints += points;
+						  finalTotal += totalPoints;
+						  points = 0;
+						  totalPoints = 0;
+					  }
+					  color++;
+					  if(color==4){color=1;}
+					  courseLoader.getCourseHtml("math", gradesByQ[0], gradesByQ[1], gradesByQ[2], gradesByQ[3], finalPoints/finalTotal, lastColor);
+				  }
+			  })
+			  courseLoader.getCourseHtml("math", 1, 2, 3, 4, 5, lastColor);
 		  });
 	  </script>  
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
