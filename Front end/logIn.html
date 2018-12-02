@@ -15,9 +15,10 @@
   <body>
     <script>
             var client;
-            window.addEventListener("load",function(){
-                client = new Client();
 
+				window.addEventListener("load",function(){
+                client = new Client("ws://127.0.0.1:5524");
+					
                 document.getElementById("LogInButton").addEventListener("click", function() {
                     var username = document.getElementById("emailInput").value;
                     var password = document.getElementById("passwordInput").value;
