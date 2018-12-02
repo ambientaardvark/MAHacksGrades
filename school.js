@@ -43,8 +43,10 @@ class School
     }
     createUser(username, password, firstname, lastname)
     {
-        var id = getNewUserId();
-        this.userList.push(new User(firstname, lastname, username, password, id, this));
+        var id = this.getNewUserId();
+        let user = new User(firstname, lastname, username, password, id, this);
+        this.userList.push(user);
+        return user;
     }
 
     getNewUserId()

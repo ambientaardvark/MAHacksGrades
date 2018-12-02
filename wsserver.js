@@ -27,7 +27,7 @@ class WSServer
                 }()){
                     tokenValidity = true;
                 }
-                if(!tokenValidity && data.type != "login"){
+                if(!tokenValidity && !(data.type == "login" || data.type == "createUser")){
                     return;
                 }
                 var tempUser;
@@ -40,6 +40,7 @@ class WSServer
                 }
                 switch (data.type) {
                     case "login":
+                    {
                         for (let index = 0; index < wss.school.userList.length; index++) {
                             const element = wss.school.userList[index];
                             if(element.userName == data.userName){
@@ -49,6 +50,7 @@ class WSServer
                                 }
                             }
                         }
+                    }
                         break;
                         
                     case "requestCourseList":
@@ -74,12 +76,14 @@ class WSServer
                         break;
 
                     case "requestAssignmentList":
+                    {
                         let tempUseableList = wss.school.getCourse(data.courseId).assignmentList;
                         let tempAssigmentList;
                         for(let i = 0; i < tempUseableList.length; i++){
                             tempAssignmentList.push(tempUseableList[i].getData(tempUser.id));
                         }
                         ws.send(JSON.stringify({type:"assignmentList", assignmentList: tempAssigmentList}));
+                    }
                         break;
 
                     case "requestSchoolInfo":
@@ -95,7 +99,12 @@ class WSServer
                         break;
 
                     case "createUser":
-                        wss.school.createUser(username, password, firstname, lastname);
+                    {
+                        let user = wss.school.createUser(data.userName, data.password, data.firstName, data.lastName);
+                        //login now that we have enough information
+                        let session = wss.createSession(user);
+                        ws.send(JSON.stringify({type:"token", token: session.token}));
+                    }
                         break;
                        
                     case "createCourse":
@@ -107,8 +116,8 @@ class WSServer
                         break;
                     
                     case "completeUser":
-                        tempUser.schoolName = msgobj.school;
-                        tempUser.permissionLevel = msgobj.permissionLevel;
+                        tempUser.schoolName = data.school;
+                        tempUser.permissionLevel = data.permissionLevel;
                         break;
                        
                     default:
@@ -118,8 +127,8 @@ class WSServer
         });
     }
     createSession(user){
-        token = this.generateToken();
-        session = {user, token};
+        let token = this.generateToken();
+        let session = {user, token};
         this.sessionList.push(session);
         return session;
     }
@@ -129,6 +138,10 @@ class WSServer
             token += Math.floor(Math.random()*10);
         }
         return token;
+    }
+    login(token)
+    {
+
     }
 }
 module.exports = WSServer;

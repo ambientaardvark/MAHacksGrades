@@ -9,7 +9,7 @@ class Client{
                 switch(msgobj.type)
                 {
                     case "token":
-                        msgobj.token
+                        cl.token = msgobj.token;
                         break;
                     default:
                         break;
