@@ -7,3 +7,17 @@ var webServer = new WebServer();
 var wsServer = new WSServer(school);
 webServer.start(8080);
 wsServer.start(5524);
+
+var mathCourse = wsServer.school.createCourse("Math", [-1]);
+var assA = mathCourse.createAssignment("big exam", 100, 2);
+var assB = mathCourse.createAssignment("homework", 10, 3);
+
+var userA = wsServer.school.createUser("bob", "4", "bob", "bobson");
+var userA2 = wsServer.school.createUser("bob2", "42", "bob2", "bobson2");
+
+mathCourse.studentList.push(userA.id, userA2.id);
+assA.setGrade(userA.id, 75);
+assA.setGrade(userA2.id, 99);
+
+assB.setGrade(userA.id, 8);
+assB.setGrade(userA2.id, 10);

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>GT Course View</title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="GeneralCSS.css" rel="stylesheet" type="text/css">
+	  <script src="../jquery-3.3.1.min.js"></script>
+	  <script src="courseAssignmentLoader.js"></script>
+	  <script src="../public/client.js"></script>
+  </head>
+  <body>
+	  <script>
+		  var client;
+		  window.addEventListener("load", function(){
+			  var assLoader = new AssLoader();
+			  client = new Client("ws://127.0.0.1:5524");
+			  var lastColor = 2;
+			  assLoader.getCourseAssignmentHtml("Assignment Name", "grade", "possible grade", "Quarter", 2);
+		  });
+	  </script>	  
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#"><img src="LogoTransparent.gif" style="width: 40px;" alt="logo"></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Dashboard <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Info</a>
+      </li>
+    </ul>
+    <div class="nav-item">
+		<a href="" style="display: inline-block"><img src="profile.png" style="width: 30px" alt="profile"></a>
+		<a class="nav-link" style="display: inline-block">Account</a>
+		
+	</div>
+  </div>
+</nav>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) --> 
+    
+
+    <!-- Include all compiled plugins (below), or include individual files as needed --> 
+    <script src="js/bootstrap.min.js"></script>
+  </body>
+	<div class="container-fluid">
+	  	<div class="row" style="padding-top: 40px; padding-left: 30px;"><h4>Course:</h4></div>
+	  </div>
+</html>

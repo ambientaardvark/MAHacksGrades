@@ -9,24 +9,24 @@ class CourseLoader{
 	
 	
 	getCourseHtml(courseName, q1, q2, q3, q4, final, lastColor){
-		$(".container-fluid").append("<div class='row course'></div>");
+		$(".container-fluid").append("<div class='row course courseRow'></div>");
 		var course = $(".course");
-		$(".course").append("<div class='col-md-4 appendTarget'></div>");
+		$(".course").append("<div class='col-md-4'><a href='course.html' class='courseText appendTarget text-center'></a></div>");
 		$(".appendTarget").append(courseName);
 		$(".appendTarget").removeClass("appendTarget");
-		$(".course").append("<div class='col-md-1 appendTarget offcol'></div>");
+		$(".course").append("<div class='col-md-1 offcol'><a href='course.html' class='courseText appendTarget'></a></div>");
 		$(".appendTarget").append(q1);
 		$(".appendTarget").removeClass("appendTarget");
-		$(".course").append("<div class='col-md-1 appendTarget'></div>");
+		$(".course").append("<div class='col-md-1'><a href='course.html' class='courseText appendTarget text-center'></a></div>");
 		$(".appendTarget").append(q2);
 		$(".appendTarget").removeClass("appendTarget");
-		$(".course").append("<div class='col-md-1 appendTarget offcol'></div>");
+		$(".course").append("<div class='col-md-1 offcol'><a href='course.html' class='courseText appendTarget text-center'></a></div>");
 		$(".appendTarget").append(q3);
 		$(".appendTarget").removeClass("appendTarget");
-		$(".course").append("<div class='col-md-1 appendTarget'></div>");
+		$(".course").append("<div class='col-md-1'><a href='course.html' class='courseText appendTarget'></a></div>");
 		$(".appendTarget").append(q4);
 		$(".appendTarget").removeClass("appendTarget");
-		$(".course").append("<div class='col-md-1 appendTarget offcol'></div>");
+		$(".course").append("<div class='col-md-1 offcol'><a href='course.html' class='courseText appendTarget'></a></div>");
 		$(".appendTarget").append(final);
 		$(".appendTarget").removeClass("appendTarget");
 		var color = lastColor + 1;

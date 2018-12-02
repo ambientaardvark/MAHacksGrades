@@ -71,3 +71,21 @@
 .dark-col-3{
 	background-color: #25F929;
 }
+
+.courseRow{
+	height:50px;
+}
+
+.courseText{
+	display: block;
+	text-align: center;
+	padding-top: 13px;
+}
+
+a{
+	color: black;
+}
+
+a:hover{
+	color: black;
+}

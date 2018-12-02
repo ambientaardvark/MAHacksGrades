@@ -14,9 +14,9 @@ class Client{
                 switch(msgobj.type)
                 {
                     case "token":
-                        cl.emit("token", [msgobj.token]);
                         cl.token = msgobj.token;
                         cl.updateCookie();
+						cl.emit("token", [msgobj.token]);
                         break;
                     case "login":
                         cl.emit("login", [msgobj.succeeded]);
