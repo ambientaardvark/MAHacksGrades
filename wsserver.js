@@ -33,7 +33,7 @@ class WSServer
                 var tempUser;
                 for (let index = 0; index < wss.sessionList.length; index++) {
                     const element = wss.sessionList[index];
-                    if(wss.sessionList.token == data.token){
+                    if(element.token == data.token){
                         tempUser = element.user;
                         break;
                     }
@@ -102,7 +102,7 @@ class WSServer
                     case "requestStudentList":
                     {
                         let tempUserList;
-                        if(tempUser.permissionLevel>0){
+                        if(tempUser.permissionLevel > 0){
                             for(let i = 0; i < wss.school.userList.length; i++){
                                 if(wss.school.userList[i].permissionLevel==0){
                                     tempUserList.push(wss.school.userList[i].getData());
