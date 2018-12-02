@@ -9,18 +9,21 @@
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 	  <link href="GeneralCSS.css" rel="stylesheet">
-	  <script>alert("help!");</script>
 	  <script src="./client.js"></script>
-	<script>
+	  
+	  <script src="../jquery-3.3.1.min.js"></script>
+	
+  </head>
+  <body>
+    <script>
             var client;
 			
             window.addEventListener("load",function(){
-				alert("working 0");
                 client = new Client("ws://127.0.0.1:5524");
 				
-                 $("#createAccountButton").addEventListener("click", function() {
+                 document.getElementById("createAccountButton").addEventListener("click", function() {
 					alert("working 1");
-                    var username = document.getElementById("createuser_username").value;
+                    var username = document.getElementById("emailInput").value;
                     var password = document.getElementById("passwordInput").value;
                     var firstname = document.getElementById("firstNameInput").value;
                     var lastname = document.getElementById("lastNameInput").value;
@@ -36,9 +39,6 @@
                 })
             });
         </script>
-  </head>
-  <body>
-    
     <div class="container h-100">
 		<div class="row justify-content-center allign-self-center logincard">
 			
@@ -79,10 +79,9 @@
 		
     </div>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) --> 
-    <script src="../../js/jquery-3.2.1.min.js"></script>
 
     <!-- Include all compiled plugins (below), or include individual files as needed --> 
-    <script src="../../js/popper.min.js"></script>
+    <script src="../popper.js"></script>
     <script src="js/bootstrap.min.js"></script>
 	
 	  
