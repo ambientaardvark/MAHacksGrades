@@ -2,6 +2,7 @@ class Client{
 
     constructor(url){
         this.socket = new WebSocket(url);
+        this.loadCookie();
         var cl = this;
         this.socket.onopen = function(openev) {
             cl.socket.onmessage = function(ev) {
@@ -13,6 +14,7 @@ class Client{
                     case "token":
                         cl.emit("token", [msgobj.token]);
                         cl.token = msgobj.token;
+                        cl.updateCookie();
                         break;
                     case "login":
                         cl.emit("login", [msgobj.succeeded]);
@@ -51,6 +53,28 @@ class Client{
             }
         }
         this.events = {};
+    }
+    loadCookie() //https://www.w3schools.com/js/js_cookies.asp
+    {
+        var name = "token=";
+        var decodedCookie = decodeURIComponent(document.cookie);
+        var ca = decodedCookie.split(';');
+        for(var i = 0; i <ca.length; i++) {
+            var c = ca[i];
+            while (c.charAt(0) == ' ') {
+                c = c.substring(1);
+            }
+            if (c.indexOf(name) == 0) {
+                this.token = c.substring(name.length, c.length);
+            }
+        }
+    }
+    updateCookie()
+    {
+        var d = new Date();
+        d.setTime(d.getTime() + (30*24*60*60*1000) /*30 days*/);
+        var expires = "expires=" + d.toUTCString();
+        document.cookie = "token=" + this.token + ";" + expires;
     }
     emit(event, argList)
     {
@@ -104,7 +128,12 @@ class Client{
     {
         if(this.ready())
         {
+            if(typeof perms != "number")
+            {
+                perms = parseInt(perms);
+            }
             var info = {
+                token: this.token,
                 type: "completeUser",
                 token: this.token,
                 school: schoolname,
@@ -113,6 +142,119 @@ class Client{
             this.socket.send(JSON.stringify(info));
         }
     }
+    sendRequestCourseList()
+    {
+        if(this.ready())
+        {
+            this.socket.send(JSON.stringify({
+                token: this.token,
+                type: "requestCourseList"
+            }));
+        }
+    }
+    sendRequestUserCourseList()
+    {
+        if(this.ready())
+        {
+            this.socket.send(JSON.stringify({
+                token: this.token,
+                type: "requestUserCourseList"
+            }));
+        }
+    }
+    sendRequestAssignmentList(courseid)
+    {
+        if(this.ready())
+        {
+            this.socket.send(JSON.stringify({
+                token: this.token,
+                type: "requestAssignmentList",
+                courseId: courseid
+            }));
+        }
+    }
+    sendRequestSchoolInfo()
+    {
+        if(this.ready())
+        {
+            this.socket.send(JSON.stringify({
+                token: this.token,
+                type: "requestSchoolInfo"
+            }));
+        }
+    }
+    sendRequestStudentList()
+    {
+        if(this.ready())
+        {
+            this.socket.send(JSON.stringify({
+                token: this.token,
+                type: "requestStudentList"
+            }));
+        }
+    }
+    sendRequestTeacherList()
+    {
+        if(this.ready())
+        {
+            this.socket.send(JSON.stringify({
+                token: this.token,
+                type: "requestTeacherList"
+            }));
+        }
+    }
+    sendRequestAdministratorList()
+    {
+        if(this.ready())
+        {
+            this.socket.send(JSON.stringify({
+                token: this.token,
+                type: "requestAdministratorList"
+            }));
+        }
+    }
+    sendRequestUserInfo(userid)
+    {
+        if(this.ready())
+        {
+            this.socket.send(JSON.stringify({
+                token: this.token,
+                type: "requestUserInfo",
+                userId: userid
+            }));
+        }
+    }
+    sendRequestGrades(){
+        this.socket.send(JSON.stringify({
+            token: this.token,
+            type: "requestGrades"
+        }))
+    }
+    sendCreateCourse(name, ownerList) //list of user ids
+    {
+        if(this.ready())
+        {
+            this.socket.send(JSON.stringify({
+                token: this.token,
+                type: "createCourse",
+                name: name,
+                ownerList: ownerList
+            }));
+        }
+    }
+    sendCreateAssignment(name, maximumGrade)
+    {
+        if(this.ready())
+        {
+            this.socket.send(JSON.stringify({
+                token: this.token,
+                type: "createAssignment",
+                name: name,
+                maximumGrade: maximumGrade
+            }));
+        }
+    }
+    
 
     ready()
     {

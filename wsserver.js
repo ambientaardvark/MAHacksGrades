@@ -19,7 +19,7 @@ class WSServer
                 if(function(){
                     for (let index = 0; index < wss.sessionList.length; index++) {
                         const element = wss.sessionList[index];
-                        if(data.token==element.token){
+                        if(data.token==element.token){ 
                             return true;
                         }
                     }
@@ -33,7 +33,7 @@ class WSServer
                 var tempUser;
                 for (let index = 0; index < wss.sessionList.length; index++) {
                     const element = wss.sessionList[index];
-                    if(wss.sessionList.token == data.token){
+                    if(element.token == data.token){
                         tempUser = element.user;
                         break;
                     }
@@ -41,14 +41,14 @@ class WSServer
                 switch (data.type) {
                     case "login":
                     {
-                        var succeded = false;
+                        var succeeded = false;
                         for (let index = 0; index < wss.school.userList.length; index++) {
                             const element = wss.school.userList[index];
                             if(element.userName == data.userName){
                                 if(element.password == data.password){
                                     let session = wss.createSession(element);
                                     ws.send(JSON.stringify({type:"token", token: session.token}));
-                                    succeded = true;
+                                    succeeded = true;
                                 }
                             }
                         }
@@ -95,21 +95,21 @@ class WSServer
                     case "requestSchoolInfo":
                     {
                         let tempSchoolInfo = wss.school.getData(tempUser);
-                        ws.send(JSON(stringify({type:"schoolInfo",schoolInfo: tempSchoolInfo})));
+                        ws.send(JSON.stringify({type:"schoolInfo",schoolInfo: tempSchoolInfo}));
                     }
                         break;
 
                     case "requestStudentList":
                     {
                         let tempUserList;
-                        if(tempUser.permissionLevel>0){
+                        if(tempUser.permissionLevel > 0){
                             for(let i = 0; i < wss.school.userList.length; i++){
                                 if(wss.school.userList[i].permissionLevel==0){
                                     tempUserList.push(wss.school.userList[i].getData());
                                 }
                             }
                         }
-                        ws.send(JSON(stringify({type:"studentList",studentList: tempUserList})));
+                        ws.send(JSON.stringify({type:"studentList",studentList: tempUserList}));
                     }
                         break;
 
@@ -123,7 +123,7 @@ class WSServer
                                 }
                             }
                         }
-                        ws.send(JSON(stringify({type:"teacherList",teacherList: tempUserList})));
+                        ws.send(JSON.stringify({type:"teacherList",teacherList: tempUserList}));
                     }
                         break;
                         
@@ -137,7 +137,7 @@ class WSServer
                                 }
                             }
                         }
-                        ws.send(JSON(stringify({type:"administratorList",administratorList: tempUserList})));
+                        ws.send(JSON.stringify({type:"administratorList",administratorList: tempUserList}));
                     }
                         break;
 
@@ -152,7 +152,23 @@ class WSServer
                                 }
                             }
                         }
-                        ws.send(JSON(stringify({type:"userInfo",userInfo: tempStudentInfo})));
+                        ws.send(JSON.stringify({type:"userInfo",userInfo: tempStudentInfo}));
+                    }
+                        break;
+
+                    case "requestGrades":
+                    {
+                        let tempGradePairList;
+                        for(let i = 0; i < tempUser.courseList.length;i++){
+                            for(let j = 0; j < tempUser.courseList[i].assignmentList.length;j++){
+                                for(let k = 0; k < tempUser.courseList[i].assignmentList[j].userGradePairs.length;k++){
+                                    if(tempUser.id == tempUser.courseList[i].assignmentList[j].userGradePairs.userId){
+                                        tempGradePairList.push(tempUser.courseList[i].assignmentList[j].getData(tempUser));
+                                    }
+                                }
+                            }
+                        }
+                        ws.send(JSON.stringify({type:"grades",grades: tempGradePairList}));
                     }
                         break;
 
