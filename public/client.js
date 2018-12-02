@@ -50,7 +50,7 @@ class Client{
                         break;
                     case "grades":
                         cl.emit("grades", [msgobj.grades]);
-						console.log(msgobj.grades);
+                        console.log(msgobj.grades);
                         break;
                     
                     default:
@@ -238,10 +238,12 @@ class Client{
         }
     }
     sendRequestGrades(){
-        this.socket.send(JSON.stringify({
-            token: this.token,
-            type: "requestGrades"
-        }))
+        if(this.ready){
+            this.socket.send(JSON.stringify({
+                token: this.token,
+                type: "requestGrades"
+            }))
+        }
     }
     sendCreateCourse(name, ownerList) //list of user ids
     {
