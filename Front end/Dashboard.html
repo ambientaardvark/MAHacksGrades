@@ -22,7 +22,7 @@
 			  client = new Client("ws://127.0.0.1:5524");
 			  var lastColor = 2;
 			  client.addEventListener("open", function(){
-				  //client.sendCreateUser("alan", "abc", "Alan", "Lee");
+				  client.sendCreateUser("alan", "abc", "Alan", "Lee");
 				  client.sendLogin("bob", "4");
 				  client.addEventListener("token", function(){
 					  client.sendRequestGrades();

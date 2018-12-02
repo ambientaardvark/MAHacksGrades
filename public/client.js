@@ -50,6 +50,7 @@ class Client{
                         break;
                     case "grades":
                         cl.emit("grades", [msgobj.grades]);
+						console.log(msgobj.grades);
                         break;
                     
                     default:
