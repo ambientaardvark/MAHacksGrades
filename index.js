@@ -15,7 +15,9 @@ var assB = mathCourse.createAssignment("homework", 10, 3);
 var userA = wsServer.school.createUser("bob", "4", "bob", "bobson");
 var userA2 = wsServer.school.createUser("bob2", "42", "bob2", "bobson2");
 
-mathCourse.studentList.push(userA.id, userA2.id);
+//mathCourse.studentList.push(userA.id, userA2.id);
+mathCourse.addUser(userA);
+mathCourse.addUser(userA2);
 assA.setGrade(userA.id, 75);
 assA.setGrade(userA2.id, 99);
 
