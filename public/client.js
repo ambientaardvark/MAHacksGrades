@@ -5,7 +5,9 @@ class Client{
         this.loadCookie();
         var cl = this;
         this.socket.onopen = function(openev) {
+            cl.emit("open");
             cl.socket.onmessage = function(ev) {
+                cl.emit("message");
                 console.log("we got " + ev.data);
                 var msgobj = JSON.parse(ev.data);
 

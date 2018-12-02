@@ -9,6 +9,18 @@ class Course{
         this.id = id;
         this.school = school;
     }
+    loadCourse(dataobj)
+    {
+        this.name = dataobj.name;
+        this.ownerList = dataobj.ownerList;
+        this.assignmentList = [];
+        for(var i = 0; i < dataobj.assignmentList.length; i++)
+        {
+            this.assignmentList.push((new Assignment()).loadAssignment(dataobj.assignmentList[i]));
+        }
+        this.studentList = [];
+        
+    }
 
     createAssignment(name, maximumGrade, quarter){
         let assignment = new Assignment(name, maximumGrade, quarter, this.name);

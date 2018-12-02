@@ -1,3 +1,4 @@
+const Course = require("./course.js");
 class User
 {
     constructor(firstName, lastName, userName, password, id, school)
@@ -7,10 +8,24 @@ class User
         this.userName = userName;
         this.password = password;
         this.id = id;
-        this.courseList = []; //LIST OF IDS
+        this.courseList = [];
         this.permissionLevel = 0;
         this.school = school;
         this.schoolName = "";
+    }
+    loadUser(dataobj)
+    {
+        this.firstName = dataobj.firstName;
+        this.lastName = dataobj.lastName;
+        this.userName = dataobj.userName;
+        this.password = dataobj.password;
+        this.id = dataobj.id;
+        this.courseList = [];
+        for(var i = 0; i < dataobj.courseList.length; i++)
+        {
+            this.courseList.push((new Course()).loadCourse(dataobj.courseList[i]));
+        }
+        return this;
     }
 
     dropCourse(id){

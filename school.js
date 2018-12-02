@@ -19,8 +19,21 @@ class School
             dataobj = JSON.parse(data);
             this.name = dataobj.name;
             this.location = dataobj.location;
-            
+            this.principal = dataobj.principal;
+            this.principalEmail = dataobj.principalEmail;
+            this.supportEmail = dataobj.supportEmail;
+            this.userList = [];
+            for(var i = 0; i < dataobj.userList.length; i++)
+            {
+                this.userList.push((new User()).loadUser(dataobj.userList[i]));
+            }
+            this.courseList = [];
+            for(var i = 0; i < dataobj.courseList.length; i++)
+            {
+                this.courseList.push((new Course()).loadCourse(dataobj.courseList[i]));
+            }
         });
+        return this;
     }
     saveSchool(filename)
     {
