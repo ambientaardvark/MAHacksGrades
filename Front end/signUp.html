@@ -9,7 +9,7 @@
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 	  <link href="GeneralCSS.css" rel="stylesheet">
-	  <script src="./client.js"></script>
+	  <script src="../public/client.js"></script>
 	  
 	  <script src="../jquery-3.3.1.min.js"></script>
 	
@@ -22,19 +22,16 @@
                 client = new Client("ws://127.0.0.1:5524");
 				
                  document.getElementById("createAccountButton").addEventListener("click", function() {
-					alert("working 1");
                     var username = document.getElementById("emailInput").value;
                     var password = document.getElementById("passwordInput").value;
                     var firstname = document.getElementById("firstNameInput").value;
                     var lastname = document.getElementById("lastNameInput").value;
 					var confirm = document.getElementById("confirmInput").value;
 					if(password==confirm){
-						alert("yay");
                     	client.sendCreateUser(username, password, firstname, lastname);
 					} else{
 						$("#confirmField").addClass("hasError");
 						$("#passwordMismatchError").append("Passwords do not match");
-						alert("working");
 					}
                 })
             });
