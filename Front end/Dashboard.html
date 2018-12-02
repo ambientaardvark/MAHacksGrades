@@ -15,14 +15,17 @@
   </head>
   <body>
 	  <script>
+		  var client;
 		  window.addEventListener("load", function(){
 			  var courseLoader = new CourseLoader();
-			  var client = new Client("ws://127.0.0.1:5524");
+			  client = new Client("ws://127.0.0.1:5524");
 			  var lastColor = 2;
-			  client.addEventListener("connect", function(){
+			  client.addEventListener("open", function(){
 				  client.sendRequestGrades();
+				  alert("request sent");
 			  })
 			  client.addEventListener("grades", function(gradePairs){
+				  alert("recieved");
 				  var points = 0;
 				  var totalPoints = 0;
 				  var courseCount = 0;
