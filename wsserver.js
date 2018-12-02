@@ -41,14 +41,14 @@ class WSServer
                 switch (data.type) {
                     case "login":
                     {
-                        var succeded = false;
+                        var succeeded = false;
                         for (let index = 0; index < wss.school.userList.length; index++) {
                             const element = wss.school.userList[index];
                             if(element.userName == data.userName){
                                 if(element.password == data.password){
                                     let session = wss.createSession(element);
                                     ws.send(JSON.stringify({type:"token", token: session.token}));
-                                    succeded = true;
+                                    succeeded = true;
                                 }
                             }
                         }

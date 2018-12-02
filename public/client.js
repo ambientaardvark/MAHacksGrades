@@ -113,6 +113,102 @@ class Client{
             this.socket.send(JSON.stringify(info));
         }
     }
+    sendRequestCourseList()
+    {
+        if(this.ready())
+        {
+            this.socket.send(JSON.stringify({
+                type: "courseList"
+            }));
+        }
+    }
+    sendRequestUserCourseList()
+    {
+        if(this.ready())
+        {
+            this.socket.send(JSON.stringify({
+                type: "userCourseList"
+            }));
+        }
+    }
+    sendRequestAssignmentList()
+    {
+        if(this.ready())
+        {
+            this.socket.send(JSON.stringify({
+                type: "assignmentList"
+            }));
+        }
+    }
+    sendRequestSchoolInfo()
+    {
+        if(this.ready())
+        {
+            this.socket.send(JSON.stringify({
+                type: "schoolInfo"
+            }));
+        }
+    }
+    sendRequestStudentList()
+    {
+        if(this.ready())
+        {
+            this.socket.send(JSON.stringify({
+                type: "studentList"
+            }));
+        }
+    }
+    sendRequestTeacherList()
+    {
+        if(this.ready())
+        {
+            this.socket.send(JSON.stringify({
+                type: "teacherList"
+            }));
+        }
+    }
+    sendRequestAdministratorList()
+    {
+        if(this.ready())
+        {
+            this.socket.send(JSON.stringify({
+                type: "administratorList"
+            }));
+        }
+    }
+    sendRequestUserInfo(userid)
+    {
+        if(this.ready())
+        {
+            this.socket.send(JSON.stringify({
+                type: "userInfo",
+                userId: userid
+            }));
+        }
+    }
+    sendCreateCourse(name, ownerList) //list of user ids
+    {
+        if(this.ready())
+        {
+            this.socket.send(JSON.stringify({
+                type: "createCourse",
+                name: name,
+                ownerList: ownerList
+            }));
+        }
+    }
+    sendCreateAssignment(name, maximumGrade)
+    {
+        if(this.ready())
+        {
+            this.socket.send(JSON.stringify({
+                type: "createAssignment",
+                name: name,
+                maximumGrade: maximumGrade
+            }));
+        }
+    }
+    
 
     ready()
     {
