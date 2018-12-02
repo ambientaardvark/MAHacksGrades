@@ -21,6 +21,11 @@ class Course{
         this.studentList = [];
         
     }
+    addUser(user)
+    {
+        user.courseList.push(this);
+        this.studentList.push(user.id);
+    }
 
     createAssignment(name, maximumGrade, quarter){
         let assignment = new Assignment(name, maximumGrade, quarter, this.name);

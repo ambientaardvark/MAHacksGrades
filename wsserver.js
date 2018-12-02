@@ -161,11 +161,11 @@ class WSServer
                         let assignments = [];
                         for(var i = 0; i < tempUser.courseList.length; i++)
                         {
-                            var course = courseList[i];
+                            var course = tempUser.courseList[i];
                             for(var j = 0; j < course.assignmentList.length; j++)
                             {
                                 var assignment = course.assignmentList[j];
-                                for(var k = 0; k < assignment.userGradePairs.length; i++)
+                                for(var k = 0; k < assignment.userGradePairs.length; k++)
                                 {
                                     var pair = assignment.userGradePairs[k];
                                     if(pair.id == tempUser.id)
