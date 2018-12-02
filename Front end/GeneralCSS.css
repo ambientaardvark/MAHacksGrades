@@ -26,7 +26,6 @@
 #passwordInput, #confirmInput, #emailInput, #firstNameInput, #lastNameInput{
 	background-repeat: no-repeat;
 	text-indent: 35px;
-	
 	background-size: contain;
 }
 #createAccountButton {
