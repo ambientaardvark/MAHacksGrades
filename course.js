@@ -1,3 +1,4 @@
+const Assignment = require("./assignment.js");
 class Course{
 
     constructor(name, ownerList, id, school){
@@ -10,7 +11,7 @@ class Course{
     }
 
     createAssignment(name, maximumGrade){
-        let assignment = new Course(name, maximumGrade);
+        let assignment = new Assignment(name, maximumGrade);
         this.assignmentList.push(assignment);
         return assignment;
     }

@@ -156,6 +156,22 @@ class WSServer
                     }
                         break;
 
+                    case "requestGrades":
+                    {
+                        let tempGradePairList;
+                        for(let i = 0; i < tempUser.courseList.length;i++){
+                            for(let j = 0; j < tempUser.courseList[i].assignmentList.length;j++){
+                                for(let k = 0; k < tempUser.courseList[i].assignmentList[j].userGradePairs.length;k++){
+                                    if(tempUser.id == tempUser.courseList[i].assignmentList[j].userGradePairs.userId){
+                                        tempGradePairList.push({maxGrade: tempUser.courseList[i].assignmentList[j].maximumGrade, userGrade: tempUser.courseList[i].assignmentList[j].userGradePairs[k].grade});
+                                    }
+                                }
+                            }
+                        }
+                        ws.send(JSON.stringify({type:"grades",grades: tempGradePairList}));
+                    }
+                        break;
+
                     case "createUser":
                     {
                         let user = wss.school.createUser(data.userName, data.password, data.firstName, data.lastName);
