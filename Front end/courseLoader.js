@@ -43,5 +43,6 @@ class CourseLoader{
 			$(".course").addClass("course3");
 			$(".offcol").addClass("dark-col-3")
 		}
+		$(".course").removeClass("course");
 	}
 }
