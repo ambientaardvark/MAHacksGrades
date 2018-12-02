@@ -87,15 +87,57 @@ class WSServer
                         break;
 
                     case "requestSchoolInfo":
-
+                        let tempSchoolInfo = wss.school.getData(tempUser);
+                        ws.send(JSON(stringify({type:"schoolInfo",schoolInfo: tempSchoolInfo})));
                         break;
 
                     case "requestStudentList":
-
+                        let tempUserList;
+                        if(tempUser.permissionLevel>0){
+                            for(let i = 0; i < wss.school.userList.length; i++){
+                                if(wss.school.userList[i].permissionLevel==0){
+                                    tempUserList.push(wss.school.userList[i].getData());
+                                }
+                            }
+                        }
+                        ws.send(JSON(stringify({type:"studentList",studentList: tempUserList})));
                         break;
 
-                    case "requestStudentInfo":
+                    case "requestTeacherList":
+                        let tempUserList;
+                        if(tempUser.permissionLevel>0){
+                            for(let i = 0; i < wss.school.userList.length; i++){
+                                if(wss.school.userList[i].permissionLevel==1){
+                                    tempUserList.push(wss.school.userList[i].getData());
+                                }
+                            }
+                        }
+                        ws.send(JSON(stringify({type:"teacherList",teacherList: tempUserList})));
+                        break;
                         
+                    case "requestAdministratorList":
+                        let tempUserList;
+                        if(tempUser.permissionLevel>0){
+                            for(let i = 0; i < wss.school.userList.length; i++){
+                                if(wss.school.userList[i].permissionLevel==2){
+                                    tempUserList.push(wss.school.userList[i].getData());
+                                }
+                            }
+                        }
+                        ws.send(JSON(stringify({type:"administratorList",administratorList: tempUserList})));
+                        break;
+
+                    //data must include user id
+                    case "requestUserInfo":
+                        let tempStudentInfo;
+                        if(tempUser.permissionLevel>0){
+                            for(let i = 0; i < wss.school.userList.length; i++){
+                                if(wss.school.userList[i].id = data.userId){
+                                    tempStudentInfo = wss.school.userList[i].getData();
+                                }
+                            }
+                        }
+                        ws.send(JSON(stringify({type:"userInfo",userInfo: tempStudentInfo})));
                         break;
 
                     case "createUser":
@@ -108,7 +150,7 @@ class WSServer
                         break;
                        
                     case "createCourse":
-
+                        
                         break;
                            
                     case "createAssignment":
