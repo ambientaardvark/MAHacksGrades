@@ -90,7 +90,10 @@ class Client{
             {
                 if(typeof evlist[i] != "undefined")
                 {
-                    evlist[i](...argList);
+                    if(typeof argList != "undefined")
+                    {
+                        evlist[i](...argList);
+                    }
                 }
             }
         }
