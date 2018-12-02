@@ -104,7 +104,12 @@ class Client{
     {
         if(this.ready())
         {
+            if(typeof perms != "number")
+            {
+                perms = parseInt(perms);
+            }
             var info = {
+                token: this.token,
                 type: "completeUser",
                 token: this.token,
                 school: schoolname,
@@ -118,7 +123,8 @@ class Client{
         if(this.ready())
         {
             this.socket.send(JSON.stringify({
-                type: "courseList"
+                token: this.token,
+                type: "requestCourseList"
             }));
         }
     }
@@ -127,7 +133,8 @@ class Client{
         if(this.ready())
         {
             this.socket.send(JSON.stringify({
-                type: "userCourseList"
+                token: this.token,
+                type: "requestUserCourseList"
             }));
         }
     }
@@ -136,7 +143,8 @@ class Client{
         if(this.ready())
         {
             this.socket.send(JSON.stringify({
-                type: "assignmentList"
+                token: this.token,
+                type: "requestAssignmentList"
             }));
         }
     }
@@ -145,7 +153,8 @@ class Client{
         if(this.ready())
         {
             this.socket.send(JSON.stringify({
-                type: "schoolInfo"
+                token: this.token,
+                type: "requestSchoolInfo"
             }));
         }
     }
@@ -154,7 +163,8 @@ class Client{
         if(this.ready())
         {
             this.socket.send(JSON.stringify({
-                type: "studentList"
+                token: this.token,
+                type: "requestStudentList"
             }));
         }
     }
@@ -163,7 +173,8 @@ class Client{
         if(this.ready())
         {
             this.socket.send(JSON.stringify({
-                type: "teacherList"
+                token: this.token,
+                type: "requestTeacherList"
             }));
         }
     }
@@ -172,7 +183,8 @@ class Client{
         if(this.ready())
         {
             this.socket.send(JSON.stringify({
-                type: "administratorList"
+                token: this.token,
+                type: "requestAdministratorList"
             }));
         }
     }
@@ -181,7 +193,8 @@ class Client{
         if(this.ready())
         {
             this.socket.send(JSON.stringify({
-                type: "userInfo",
+                token: this.token,
+                type: "requestUserInfo",
                 userId: userid
             }));
         }
@@ -191,6 +204,7 @@ class Client{
         if(this.ready())
         {
             this.socket.send(JSON.stringify({
+                token: this.token,
                 type: "createCourse",
                 name: name,
                 ownerList: ownerList
@@ -202,6 +216,7 @@ class Client{
         if(this.ready())
         {
             this.socket.send(JSON.stringify({
+                token: this.token,
                 type: "createAssignment",
                 name: name,
                 maximumGrade: maximumGrade

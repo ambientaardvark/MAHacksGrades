@@ -19,7 +19,7 @@ class WSServer
                 if(function(){
                     for (let index = 0; index < wss.sessionList.length; index++) {
                         const element = wss.sessionList[index];
-                        if(data.token==element.token){
+                        if(data.token==element.token){ 
                             return true;
                         }
                     }
@@ -95,7 +95,7 @@ class WSServer
                     case "requestSchoolInfo":
                     {
                         let tempSchoolInfo = wss.school.getData(tempUser);
-                        ws.send(JSON(stringify({type:"schoolInfo",schoolInfo: tempSchoolInfo})));
+                        ws.send(JSON.stringify({type:"schoolInfo",schoolInfo: tempSchoolInfo}));
                     }
                         break;
 
@@ -109,7 +109,7 @@ class WSServer
                                 }
                             }
                         }
-                        ws.send(JSON(stringify({type:"studentList",studentList: tempUserList})));
+                        ws.send(JSON.stringify({type:"studentList",studentList: tempUserList}));
                     }
                         break;
 
@@ -123,7 +123,7 @@ class WSServer
                                 }
                             }
                         }
-                        ws.send(JSON(stringify({type:"teacherList",teacherList: tempUserList})));
+                        ws.send(JSON.stringify({type:"teacherList",teacherList: tempUserList}));
                     }
                         break;
                         
@@ -137,7 +137,7 @@ class WSServer
                                 }
                             }
                         }
-                        ws.send(JSON(stringify({type:"administratorList",administratorList: tempUserList})));
+                        ws.send(JSON.stringify({type:"administratorList",administratorList: tempUserList}));
                     }
                         break;
 
@@ -152,7 +152,7 @@ class WSServer
                                 }
                             }
                         }
-                        ws.send(JSON(stringify({type:"userInfo",userInfo: tempStudentInfo})));
+                        ws.send(JSON.stringify({type:"userInfo",userInfo: tempStudentInfo}));
                     }
                         break;
 
