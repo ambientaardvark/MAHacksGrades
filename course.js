@@ -9,6 +9,12 @@ class Course{
         this.school = school;
     }
 
+    createAssignment(name, maximumGrade){
+        let assignment = new Course(name, maximumGrade);
+        this.assignmentList.push(assignment);
+        return assignment;
+    }
+
     removeAssignment(assignment){
         let assignmentIndex = -1;
         for (let index = 0; index < this.assignmentList.length; index++) {

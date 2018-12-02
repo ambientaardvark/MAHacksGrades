@@ -150,11 +150,15 @@ class WSServer
                         break;
                        
                     case "createCourse":
-                        
+                    {
+                        let course = wss.school.createCourse(data.name, data.ownerList);
+                    }                
                         break;
-                           
+                    
                     case "createAssignment":
-
+                    {
+                        let assignment = data.course.createAssignment(data.name, data.maximumGrade);
+                    }
                         break;
                     
                     case "completeUser":
