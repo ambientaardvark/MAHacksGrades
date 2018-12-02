@@ -1,6 +1,7 @@
 class Client{
 
     constructor(url){
+        this.events = {};
         this.socket = new WebSocket(url);
         this.loadCookie();
         var cl = this;
@@ -59,7 +60,6 @@ class Client{
                 }
             }
         }
-        this.events = {};
     }
     loadCookie() //https://www.w3schools.com/js/js_cookies.asp
     {
@@ -75,6 +75,7 @@ class Client{
                 this.token = c.substring(name.length, c.length);
             }
         }
+        this.emit("token", this.token);
     }
     updateCookie()
     {

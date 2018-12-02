@@ -9,6 +9,7 @@ class WebServer
     {
         this.port = port;
         this.httpServer.use(Express.static("public"));
+        this.httpServer.use(Express.static("Front end"));
         this.httpServer.listen(port, function() {
             console.log("listening on port " + port);
         });
