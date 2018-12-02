@@ -158,17 +158,30 @@ class WSServer
 
                     case "requestGrades":
                     {
-                        let tempGradePairList = [];
-                        for(let i = 0; i < tempUser.courseList.length;i++){
-                            for(let j = 0; j < tempUser.courseList[i].assignmentList.length;j++){
-                                for(let k = 0; k < tempUser.courseList[i].assignmentList[j].userGradePairs.length;k++){
-                                    if(tempUser.id == tempUser.courseList[i].assignmentList[j].userGradePairs.userId){
-                                        tempGradePairList.push(tempUser.courseList[i].assignmentList[j].getData(tempUser));
+                        let assignments = [];
+                        for(var i = 0; i < tempUser.courseList.length; i++)
+                        {
+                            var course = courseList[i];
+                            for(var j = 0; j < course.assignmentList.length; j++)
+                            {
+                                var assignment = course.assignmentList[j];
+                                for(var k = 0; k < assignment.userGradePairs.length; i++)
+                                {
+                                    var pair = assignment.userGradePairs[k];
+                                    if(pair.id == tempUser.id)
+                                    {
+                                        assignments.push({
+                                            name: assignment.name,
+                                            maxGrade: assignment.maxGrade,
+                                            grade: pair.grade,
+                                            quarter: assignment.quarter,
+                                            courseName: assignment.quarter
+                                        });
                                     }
                                 }
                             }
                         }
-                        ws.send(JSON.stringify({type:"grades",grades: tempGradePairList}));
+                        ws.send(JSON.stringify({type:"grades", grades: assignments}));
                     }
                         break;
 
