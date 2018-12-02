@@ -181,9 +181,5 @@ class WSServer
         }
         return token;
     }
-    login(token)
-    {
-
-    }
 }
 module.exports = WSServer;

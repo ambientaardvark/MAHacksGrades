@@ -1,4 +1,5 @@
 const User = require("./user.js");
+const Course = require("./course.js");
 class School
 {
     constructor(name, location, principal, principalEmail, supportEmail)
@@ -48,10 +49,20 @@ class School
         this.userList.push(user);
         return user;
     }
-
+    createCourse(name, ownerList)
+    {
+        let id = this.getNewCourseId()
+        let course = new Course(name, ownerList, id, this);
+        this.courseList.push(course);
+        return course;
+    }
     getNewUserId()
     {
         return Math.floor(Math.random() * 1000000);
+    }
+    getNewCourseId()
+    {
+        return Math.floor(Math.random() * 100000);
     }
     getUser(id)
     {

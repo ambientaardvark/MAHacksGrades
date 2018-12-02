@@ -5,6 +5,7 @@ class Client{
         var cl = this;
         this.socket.onopen = function(openev) {
             cl.socket.onmessage = function(ev) {
+                console.log("we got " + ev.data);
                 var msgobj = JSON.parse(ev.data);
                 switch(msgobj.type)
                 {
