@@ -33,4 +33,9 @@
 	background-color: red;
 }
 
-
+.signUpButton {
+	horizantal-align: center;
+	width: 30%;
+	background-color: red;
+	border-radius: 10px;
+}
