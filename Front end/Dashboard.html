@@ -9,8 +9,17 @@
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="GeneralCSS.css" rel="stylesheet" type="text/css">
+	  <script src="../jquery-3.3.1.min.js"></script>
+	  <script src="courseLoader.js"></script>
   </head>
   <body>
+	  <script>
+		  window.addEventListener("load", function(){
+	  		var courseLoader = new CourseLoader();
+		    var lastColor = 2;
+		    courseLoader.getCourseHtml("math", 1, 2, 3, 4, 5, lastColor);
+		  });
+	  </script>  
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <a class="navbar-brand" href="#"><img src="LogoTransparent.gif" style="width: 40px;" alt="logo"></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -33,11 +42,13 @@
 	</div>
   </div>
 </nav>
+	  <div class="container-fluid">
+	  	<div class="row"><h4>Grades:</h4></div>
+	  </div>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) --> 
     <script src="js/jquery-3.2.1.min.js"></script>
 
     <!-- Include all compiled plugins (below), or include individual files as needed --> 
-    <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
   </body>
 </html>
