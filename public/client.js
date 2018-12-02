@@ -94,6 +94,10 @@ class Client{
                     {
                         evlist[i](...argList);
                     }
+                    else
+                    {
+                        evlist[i]();
+                    }
                 }
             }
         }
