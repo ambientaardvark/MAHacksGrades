@@ -9,7 +9,19 @@
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 	  <link href="GeneralCSS.css" rel="stylesheet">
+	<script>
+	  var client;
+            window.addEventListener("load",function(){
+                client = new Client();
 
+                
+                document.getElementById("createAccountButton").addEventListener("click", function() {
+                    var student = document.getElementById("studentRadio").value;
+                    var password = document.getElementById("schoolInput").value;
+                    client.sendCompleteUser(perms, school)
+                })
+            });
+	  </script>
   </head>
   <body>
     
@@ -24,9 +36,9 @@
 					<div class="card mb-4 shadow-sm">
 						<div class="card-body">
 							<form>
-  									<label class="radio-inline" style="margin-right: 15px"><input type="radio" name="optradio" checked>I am a student</label>
+  									<label class="radio-inline" style="margin-right: 15px"><input type="radio" name="optradio" id="studentRadio" checked>I am a student</label>
   									<label class="radio-inline"><input type="radio" name="optradio">I am a teacher</label>
-								<div class="form-group">
+								<div class="form-group" id="teacherRadio">
 									<input type="text" id="schoolInput" class="form-control nameInput" placeholder="enter your school">
 								</div>
 								<button type="submit" id="createAccountButton" class="btn btn-primary">Go to school</button>
@@ -47,5 +59,7 @@
     <!-- Include all compiled plugins (below), or include individual files as needed --> 
     <script src="../../js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
+	  
+	<script src="../client.js"></script>
   </body>
 </html>
