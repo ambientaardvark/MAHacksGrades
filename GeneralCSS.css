@@ -13,12 +13,24 @@
 	vertical-align: center;
 }
 
-#emailInput {
-	background-image: url(smallLogo.gif);
+#emailInput, #firstNameInput, #lastNameInput{
+	background-image: url(profile.png);
+	background-position: 2px 0px;
+}
+
+#passwordInput, #confirmInput{
+	background-image: url(lock.png);
+	background-position: 8px 0px;
+}
+
+#passwordInput, #confirmInput, #emailInput, #firstNameInput, #lastNameInput{
 	background-repeat: no-repeat;
-	text-indent: 35px
+	text-indent: 35px;
+	
+	background-size: contain;
 }
-#emailInput:focus{
-	background-image: none;
-	text-indent: 0;
+#createAccountButton {
+	background-color: red;
 }
+
+
