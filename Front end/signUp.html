@@ -29,8 +29,8 @@
 					var confirm = document.getElementById("confirmInput").value;
 					if(password==confirm){
                     	client.sendCreateUser(username, password, firstname, lastname);
-					} else{
-						$("#confirmField").addClass("hasError");
+					} else if(!$("#confirmInput").hasClass("hasError")){
+						$("#confirmInput").addClass("hasError");
 						$("#passwordMismatchError").append("Passwords do not match");
 					}
                 })
