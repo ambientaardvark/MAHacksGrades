@@ -21,7 +21,7 @@ class Course{
     }
 
     removeOwner(owner){
-        if(this.ownerList.length = 1){
+        if(this.ownerList.length == 1){
             return;
         }
         let ownerIndex = -1;

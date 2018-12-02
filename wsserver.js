@@ -108,7 +108,9 @@ class WSServer
                         break;
                        
                     case "createCourse":
-
+                    {
+                        let course = wss.school.createCourse()
+                    }
                         break;
                            
                     case "createAssignment":
@@ -138,10 +140,6 @@ class WSServer
             token += Math.floor(Math.random()*10);
         }
         return token;
-    }
-    login(token)
-    {
-
     }
 }
 module.exports = WSServer;
