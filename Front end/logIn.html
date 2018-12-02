@@ -9,11 +9,16 @@
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 	  <link href="GeneralCSS.css" rel="stylesheet">
-       <script>
+	  <script src="../jquery-3.3.1.min.js"></script>
+       
+  </head>
+  <body>
+    <script>
             var client;
-            window.addEventListener("load",function(){
-                client = new Client();
 
+				window.addEventListener("load",function(){
+                client = new Client("ws://127.0.0.1:5524");
+					
                 document.getElementById("LogInButton").addEventListener("click", function() {
                     var username = document.getElementById("emailInput").value;
                     var password = document.getElementById("passwordInput").value;
@@ -21,9 +26,6 @@
                 }); 
             });
         </script>
-  </head>
-  <body>
-    
     <div class="container h-100">
 		<div class="row justify-content-center allign-self-center logincard">
 			
