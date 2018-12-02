@@ -6,19 +6,26 @@ class Assignment
         this.maxGrade = maxGrade;
         this.userGradePairs = [];
     }
-    getData(id)
+    getData(id, doAll)
     {
         var data = {
             name: this.name,
             maxGrade: this.maxGrade,
             grade: -1
         };
-        for(var i = 0; i < this.userGradePairs.length; i++)
+        if(doAll)
         {
-            var pair = this.userGradePairs[i];
-            if(pair.id == id)
+            data.grades = this.userGradePairs;
+        }
+        if(id >= 0)
+        {
+            for(var i = 0; i < this.userGradePairs.length; i++)
             {
-                data.grade = pair;
+                var pair = this.userGradePairs[i];
+                if(pair.id == id)
+                {
+                    data.grade = pair;
+                }
             }
         }
         return data;

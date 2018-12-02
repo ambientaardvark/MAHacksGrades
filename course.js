@@ -57,6 +57,10 @@ class Course{
             assignmentList: [],
             studentList: []
         };
+        if(typeof user === "undefined")
+        {
+            user = {permissionLevel:2, id:-1};
+        }
         if(user.permissionLevel > 0 || user.hasCourse(this.id))
         {
             for(var i = 0; i < this.studentList.length; i++)
@@ -65,7 +69,7 @@ class Course{
             }
             for(var i = 0; i < this.assignmentList.length; i++)
             {
-                data.assignmentList.push(this.assignmentList[i].getData(user.id));
+                data.assignmentList.push(this.assignmentList[i].getData(user.id, user.permissionLevel > 1));
             }
         }
         for(var i = 0; i < this.ownerList.length; i++)

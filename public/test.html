@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="./client.js"></script>
+        <script>
+            var client;
+            window.addEventListener("load",function(){
+                client = new Client();
+
+                document.getElementById("login_button").addEventListener("click", function() {
+                    var username = document.getElementById("login_username").value;
+                    var password = document.getElementById("login_password").value;
+                    client.sendLogin(username, password);
+                });
+                document.getElementById("createuser_button").addEventListener("click", function() {
+                    var username = document.getElementById("createuser_username").value;
+                    var password = document.getElementById("createuser_password").value;
+                    var firstname = document.getElementById("createuser_firstname").value;
+                    var lastname = document.getElementById("createuser_lastname").value;
+                    var perms = document.getElementById("createuser_permissionLevel").value;
+                    client.sendCreate(username, password, firstname, lastname, perms)
+                })
+            });
+        </script>
+    </head>
+    <body>
+        <input type="text" id="login_username">
+        <input type="text" id="login_password">
+        <input type="button" value="login" id="login_button">
+        <br>
+        <input type="text" id="createuser_username">
+        <input type="text" id="createuser_password">
+        <input type="text" id="createuser_firstname">
+        <input type="text" id="createuser_lastname">
+        <input type="text" id="createuser_permissionLevel">
+        <input type="button" value="login" id="createuser_button">
+        <br>
+    </body>
+
+</html>
