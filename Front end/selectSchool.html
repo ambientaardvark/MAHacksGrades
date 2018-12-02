@@ -5,10 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Bootstrap - Prebuilt Layout</title>
+	  
 
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 	  <link href="GeneralCSS.css" rel="stylesheet">
+	  <script src="../jquery-3.3.1.min.js"></script>
+       <script src="../public/client.js"></script>
+	  
 	<script>
 	  var client;
             window.addEventListener("load",function(){
@@ -24,7 +28,19 @@
 	  </script>
   </head>
   <body>
-    
+    <script>
+	  var client;
+            window.addEventListener("load",function(){
+                client = new Client("ws://127.0.0.1:5524");
+
+                
+                document.getElementById("createAccountButton").addEventListener("click", function() {
+                    var student = document.getElementById("studentRadio").value;
+                    var password = document.getElementById("schoolInput").value;
+                    client.sendCompleteUser(perms, school)
+                })
+            });
+	  </script>
     <div class="container h-100">
 		<div class="row justify-content-center allign-self-center logincard">
 			
@@ -39,7 +55,7 @@
   									<label class="radio-inline" style="margin-right: 15px"><input type="radio" name="optradio" id="studentRadio" checked>I am a student</label>
   									<label class="radio-inline"><input type="radio" name="optradio">I am a teacher</label>
 								<div class="form-group" id="teacherRadio">
-									<input type="text" id="schoolInput" class="form-control nameInput" placeholder="enter your school">
+									<input type="text" id="schoolInput" class="form-control nameInput" placeholder="enter your school" required>
 								</div>
 								<button type="submit" id="createAccountButton" class="btn btn-primary">Go to school</button>
 								

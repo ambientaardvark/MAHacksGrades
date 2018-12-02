@@ -29,8 +29,8 @@
 					var confirm = document.getElementById("confirmInput").value;
 					if(password==confirm){
                     	client.sendCreateUser(username, password, firstname, lastname);
-					} else{
-						$("#confirmField").addClass("hasError");
+					} else if(!$("#confirmInput").hasClass("hasError")){
+						$("#confirmInput").addClass("hasError");
 						$("#passwordMismatchError").append("Passwords do not match");
 					}
                 })
@@ -48,19 +48,19 @@
 						<div class="card-body">
 							<form>
 								<div class="form-group">
-									<input type="text" id="firstNameInput" class="form-control nameInput" placeholder="first name">
+									<input type="text" id="firstNameInput" class="form-control nameInput" placeholder="first name" required>
 								</div>
 								<div class="form-group">
-									<input type="text" id="lastNameInput" class="form-control nameInput" placeholder="last name">
+									<input type="text" id="lastNameInput" class="form-control nameInput" placeholder="last name" required>
 								</div>
 								<div class="form-group">
-									<input type="email" id="emailInput" class="form-control" placeholder="email">
+									<input type="email" id="emailInput" class="form-control" placeholder="email" required>
 								</div>
 								<div class="form-group">
-									<input type="password" id="passwordInput" class="form-control" placeholder="password">
+									<input type="password" id="passwordInput" class="form-control" placeholder="password" required>
 								</div>
 								<div class="form-group" id="confirmField">
-									<input type="password" id="confirmInput" class="form-control" placeholder="confirm password">
+									<input type="password" id="confirmInput" class="form-control" placeholder="confirm password" required>
 									<small id="passwordMismatchError" class="form-text"></small>
 								</div>
 								<button type="button" id="createAccountButton" class="btn btn-primary">Create Account</button>

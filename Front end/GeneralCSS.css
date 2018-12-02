@@ -42,3 +42,8 @@
 .logincard {
 	padding-top:20vh;
 }
+
+.hasError, #passwordMismatchError {
+	
+	Border-color: red;
+}
