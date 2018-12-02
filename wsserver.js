@@ -163,7 +163,7 @@ class WSServer
                             for(let j = 0; j < tempUser.courseList[i].assignmentList.length;j++){
                                 for(let k = 0; k < tempUser.courseList[i].assignmentList[j].userGradePairs.length;k++){
                                     if(tempUser.id == tempUser.courseList[i].assignmentList[j].userGradePairs.userId){
-                                        tempGradePairList.push({maxGrade: tempUser.courseList[i].assignmentList[j].maximumGrade, userGrade: tempUser.courseList[i].assignmentList[j].userGradePairs[k].grade});
+                                        tempGradePairList.push(tempUser.courseList[i].assignmentList[j].getData(tempUser));
                                     }
                                 }
                             }
