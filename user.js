@@ -1,6 +1,6 @@
 class User
 {
-    constructor(firstName, lastName, userName, password, id, permissionLevel, school)
+    constructor(firstName, lastName, userName, password, id, school)
     {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -8,8 +8,9 @@ class User
         this.password = password;
         this.id = id;
         this.courseList = []; //LIST OF IDS
-        this.permissionLevel = permissionLevel;
+        this.permissionLevel = 0;
         this.school = school;
+        this.schoolName = "";
     }
 
     dropCourse(id){

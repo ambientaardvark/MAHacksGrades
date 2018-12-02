@@ -25,7 +25,7 @@ class Client{
             this.socket.send(JSON.stringify(info));
         }
     }
-    sendCreate(username, password, firstname, lastname, perms)
+    sendCreateUser(username, password, firstname, lastname)
     {
         if(this.ready())
         {
@@ -35,12 +35,25 @@ class Client{
                 userName: username,
                 password: password,
                 firstName: firstname,
-                lastName: lastname,
+                lastName: lastname
+            };
+            this.socket.send(JSON.stringify(info));
+        }
+    }
+    sendCompleteUser(schoolname, perms)
+    {
+        if(this.ready())
+        {
+            var info = {
+                type: "completeUser",
+                token: this.token,
+                school: schoolname,
                 permissionLevel: perms
             };
             this.socket.send(JSON.stringify(info));
         }
     }
+
     ready()
     {
         return this.socket.readyState === WebSocket.OPEN;

@@ -1,3 +1,4 @@
+const User = require("./user.js");
 class School
 {
     constructor(name, location, principal, principalEmail, supportEmail)
@@ -40,7 +41,16 @@ class School
             this.courseList.splice(courseIndex, 1);
         }
     }
+    createUser(username, password, firstname, lastname)
+    {
+        var id = getNewUserId();
+        this.userList.push(new User(firstname, lastname, username, password, id, this));
+    }
 
+    getNewUserId()
+    {
+        return Math.floor(Math.random() * 1000000);
+    }
     getUser(id)
     {
         for(var i = 0; i < this.userList.length; i++)
@@ -73,8 +83,8 @@ class School
             principal: this.principal,
             principalEmail: this.principalEmail,
             supportEmail: this.supportEmail,
-            courseList = [],
-            userList = []
+            courseList: [],
+            userList: []
         };
         for(var i = 0; i < this.courseList.length; i++)
         {

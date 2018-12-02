@@ -5,7 +5,7 @@
         <script>
             var client;
             window.addEventListener("load",function(){
-                client = new Client();
+                client = new Client("ws://127.0.0.1:5524");
 
                 document.getElementById("login_button").addEventListener("click", function() {
                     var username = document.getElementById("login_username").value;
@@ -18,22 +18,25 @@
                     var firstname = document.getElementById("createuser_firstname").value;
                     var lastname = document.getElementById("createuser_lastname").value;
                     var perms = document.getElementById("createuser_permissionLevel").value;
-                    client.sendCreate(username, password, firstname, lastname, perms)
-                })
+                    var schoolname = document.getElementById("createuser_school").value;
+                    client.sendCreateUser(username, password, firstname, lastname);
+                    client.sendCompleteUser(schoolname, perms);
+                });
             });
         </script>
     </head>
     <body>
-        <input type="text" id="login_username">
-        <input type="text" id="login_password">
+        <input type="text" id="login_username" value="username">
+        <input type="text" id="login_password" value="password">
         <input type="button" value="login" id="login_button">
         <br>
-        <input type="text" id="createuser_username">
-        <input type="text" id="createuser_password">
-        <input type="text" id="createuser_firstname">
-        <input type="text" id="createuser_lastname">
-        <input type="text" id="createuser_permissionLevel">
-        <input type="button" value="login" id="createuser_button">
+        <input type="text" id="createuser_username" value="username">
+        <input type="text" id="createuser_password" value="password">
+        <input type="text" id="createuser_firstname" value="first">
+        <input type="text" id="createuser_lastname" value="last">
+        <input type="text" id="createuser_permissionLevel" value="perm">
+        <input type="text" id="createuser_school" value="schol">
+        <input type="button" value="create" id="createuser_button">
         <br>
     </body>
 

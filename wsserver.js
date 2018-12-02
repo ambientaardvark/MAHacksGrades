@@ -52,21 +52,25 @@ class WSServer
                         break;
                         
                     case "requestCourseList":
+                    {
                         let tempCourseList = [];
                         for (let index = 0; index < wss.school.courseList.length; index++) {
                             const element = wss.school.courseList[index];
                             tempCourseList.push(element.getData(tempUser));
                         }
                         ws.send(JSON.stringify({type:"courseList", courseList: tempCourseList}));
+                    }
                         break;
 
                     case "requestUserCourseList":
+                    {
                         let tempCourseList = [];
                         for (let index = 0; index < tempUser.courseList.length; index++) {
                             const element = tempUser.courseList[index];
                             tempCourseList.push(element.getData(tempUser));
                         }
                         ws.send(JSON.stringify({type:"userCourseList", userCourseList: tempCourseList}));
+                    }
                         break;
 
                     case "requestCourseInfo":
@@ -104,7 +108,7 @@ class WSServer
                         break;
 
                     case "createUser":
-
+                        wss.school.createUser(username, password, firstname, lastname);
                         break;
                        
                     case "createCourse":
@@ -113,6 +117,11 @@ class WSServer
                            
                     case "createAssignment":
 
+                        break;
+                    
+                    case "completeUser":
+                        tempUser.schoolName = msgobj.school;
+                        tempUser.permissionLevel = msgobj.permissionLevel;
                         break;
                        
                     default:
