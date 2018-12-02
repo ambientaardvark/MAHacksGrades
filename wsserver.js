@@ -158,7 +158,7 @@ class WSServer
 
                     case "requestGrades":
                     {
-                        let tempGradePairList;
+                        let tempGradePairList = [];
                         for(let i = 0; i < tempUser.courseList.length;i++){
                             for(let j = 0; j < tempUser.courseList[i].assignmentList.length;j++){
                                 for(let k = 0; k < tempUser.courseList[i].assignmentList[j].userGradePairs.length;k++){
