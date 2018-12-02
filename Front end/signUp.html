@@ -57,5 +57,19 @@
     <!-- Include all compiled plugins (below), or include individual files as needed --> 
     <script src="../../js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
+	<script src="./client.js"></script>
+	  <script>
+            var client;
+            window.addEventListener("load",function(){
+                client = new Client();
+                 document.getElementById("createuser_button").addEventListener("click", function() {
+                    var username = document.getElementById("createuser_username").value;
+                    var password = document.getElementById("passwordInput").value;
+                    var firstname = document.getElementById("firstNameInput").value;
+                    var lastname = document.getElementById("lastNameInput").value;
+                    client.sendCreate(username, password, firstname, lastname, perms)
+                })
+            });
+        </script>
   </body>
 </html>
