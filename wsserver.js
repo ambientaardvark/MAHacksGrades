@@ -69,26 +69,13 @@ class WSServer
                         ws.send(JSON.stringify({type:"userCourseList", userCourseList: tempCourseList}));
                         break;
 
-                    case "requestCourseInfo":
-                        let tempCourseInfo;
-                        if(tempUser.permissionLevel>0){
-                            for(let i= 0; i< wss.school.courseList.length;i++){
-                                tempCourseInfo.push(wss.school.courseList[i].getData(tempUser));
-                            }  
-                        }else{
-                            for(let i = 0; i < tempUser.courseList.length;i++){
-                                tempCourseInfo.push(tempUser.courseList[i].getData(tempUser));
-                            }
-                        }
-                        ws.send(JSON.stringify({type:"courseInfo", courseInfo: tempCourseInfo}));
-                        break;
-
                     case "requestAssignmentList":
-
-                        break;
-
-                    case "requestAssignmentInfo":
-
+                        let tempUseableList = wss.school.getCourse(data.courseId).assignmentList;
+                        let tempAssigmentList;
+                        for(let i = 0; i < tempUseableList.length; i++){
+                            tempAssignmentList.push(tempUseableList[i].getData(tempUser.id));
+                        }
+                        ws.send(JSON.stringify({type:"assignmentList", assignmentList: tempAssigmentList}));
                         break;
 
                     case "requestSchoolInfo":
@@ -100,7 +87,7 @@ class WSServer
                         break;
 
                     case "requestStudentInfo":
-
+                        
                         break;
 
                     case "createUser":
